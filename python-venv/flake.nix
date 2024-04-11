@@ -29,7 +29,6 @@
 
           # Those are dependencies that we would like to use from nixpkgs, which will
           # add them to PYTHONPATH and thus make them accessible from within the venv.
-          pythonPackages.numpy
         ];
 
         # Run this command, only after creating the virtual environment

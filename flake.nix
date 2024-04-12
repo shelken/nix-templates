@@ -52,6 +52,14 @@
           use the template.
         '';
       };
+      
+      java = {
+        path = ./java;
+        description = "Java development template with JDK17";
+        welcomeText = ''
+          self use
+        '';
+      };
 
       kotlin = {
         path = ./kotlin;

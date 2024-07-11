@@ -202,6 +202,13 @@
           document. See the README for further information.
         '';
       };
+      
+      vite-press = {
+        path = ./vite-press;
+        description = "VitePress 项目模板";
+        # welcomeText = ''
+        # '';
+      };
     };
   };
 }

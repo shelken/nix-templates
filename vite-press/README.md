@@ -23,9 +23,8 @@ nix flake init -t github:shelken/nix-templates#vite-press
 
 ## Usage
 
+- `direnv allow`: 在项目中启用direnv自动进入环境
 - `nix develop`: opens up a `bash` shell with the specified packages
-- `just build` : builds the package to the symbolic `result` directory
-- `just run`: runs the package
 
 #### Reference
 

@@ -59,7 +59,8 @@
 
         shellHook = ''
           echo "node `${pkgs.nodejs}/bin/node --version`"
-          ${self.checks.${system}.pre-commit-check.shellHook}
+          #${self.checks.${system}.pre-commit-check.shellHook}
+          exec zsh
         '';
       };
     });

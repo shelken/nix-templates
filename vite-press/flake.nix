@@ -37,19 +37,23 @@
         pre-commit-check = pre-commit-hooks.lib.${system}.run {
           src = ./.;
           hooks = {
-            typos.enable = true; # Source code spell checker
-            alejandra.enable = true; # Nix linter
-            prettier.enable = true; # Markdown & TS formatter
-          };
-          settings = {
+            alejandra.enable = true; # formatter
             typos = {
+              enable = true;
+              settings = {
               write = true; # Automatically fix typos
               ignored-words = [];
-            };
+              };
+            }; # Source code spell checker
             prettier = {
-              write = true; # Automatically format files
-              configPath = "./.prettierrc.yaml";
-            };
+              enable = true;
+              settings = {
+                write = true; # Automatically format files
+                configPath = "./.prettierrc.yaml"; # relative to the flake root
+              };
+            }; # 主要用于文档检查
+            # deadnix.enable = true; # detect unused variable bindings in `*.nix`
+            # statix.enable = true; # lints and suggestions for Nix code(auto suggestions)
           };
         };
       };

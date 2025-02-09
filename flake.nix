@@ -34,6 +34,13 @@
         '';
       };
 
+      base = {
+        path = ./base;
+        description = "Base development template";
+        welcomeText = ''
+        '';
+      };
+
       cpp = {
         path = ./cpp;
         description = "C++ development template using cmake";

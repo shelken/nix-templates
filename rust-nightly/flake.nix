@@ -2,10 +2,8 @@
   description = "Rust development template using fenix";
 
   inputs = {
-    fenix = {
-      url = "github:nix-community/fenix/monthly";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "flake:nixpkgs";
+    fenix.url = "github:nix-community/fenix/monthly";
     utils.url = "github:numtide/flake-utils";
   };
 

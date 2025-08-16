@@ -2,6 +2,7 @@
   description = "Python venv development template";
 
   inputs = {
+    nixpkgs.url = "flake:nixpkgs";
     utils.url = "github:numtide/flake-utils";
   };
 

@@ -2,6 +2,7 @@
   description = "Python environment using micromamba";
 
   inputs = {
+    nixpkgs.url = "flake:nixpkgs";
     utils.url = "github:numtide/flake-utils";
   };
 

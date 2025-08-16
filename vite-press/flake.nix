@@ -1,6 +1,7 @@
 {
   description = "vite-press flake";
   inputs = {
+    nixpkgs.url = "flake:nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
   };

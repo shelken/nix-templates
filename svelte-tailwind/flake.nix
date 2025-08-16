@@ -2,6 +2,7 @@
   description = "A svelte tailwind development flake";
 
   inputs = {
+    nixpkgs.url = "flake:nixpkgs";
     utils.url = "github:numtide/flake-utils";
   };
 

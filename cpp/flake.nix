@@ -1,7 +1,10 @@
 {
   description = "A C++ template using cmake for nix";
 
-  inputs.utils.url = "github:numtide/flake-utils";
+  inputs = {
+    nixpkgs.url = "flake:nixpkgs";
+    utils.url = "github:numtide/flake-utils";
+  };
 
   outputs = {
     self,

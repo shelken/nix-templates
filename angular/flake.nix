@@ -1,5 +1,6 @@
 {
   inputs = {
+    nixpkgs.url = "flake:nixpkgs";
     utils.url = "github:numtide/flake-utils";
   };
 

@@ -2,6 +2,7 @@
   description = "Tauri Javascript App";
 
   inputs = {
+    nixpkgs.url = "flake:nixpkgs";
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -2,7 +2,7 @@
   description = "Platformio development shell";
 
   inputs = {
-    nixpkgs.url = "flake:nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/25.05";
     utils.url = "github:numtide/flake-utils";
   };
 

@@ -8,7 +8,7 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
   in {
-    devShells.${system}.default = pkgs.mkShell {
+    devShells.${system}.default = pkgs.mkShellNoCC {
       buildInputs = with pkgs; [
         just
       ];
@@ -59,7 +59,7 @@
           use the template.
         '';
       };
-      
+
       java = {
         path = ./java;
         description = "Java development template with JDK17";
@@ -209,7 +209,7 @@
           document. See the README for further information.
         '';
       };
-      
+
       vite-press = {
         path = ./vite-press;
         description = "VitePress 项目模板";

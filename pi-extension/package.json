@@ -1,0 +1,31 @@
+{
+  "name": "pi-extension-template",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Pi extension template",
+  "type": "module",
+  "keywords": ["pi-package"],
+  "scripts": {
+    "test": "vitest run",
+    "check": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    }
+  },
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "latest",
+    "bun-types": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

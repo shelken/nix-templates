@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest"
-import factory from "../index.ts"
+import factory from "../src/index.ts"
 
 describe("extension factory", () => {
   it("导出默认函数", () => {

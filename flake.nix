@@ -41,6 +41,14 @@
         '';
       };
 
+      base-mise = {
+        path = ./base-mise;
+        description = "Base development template using mise (no flake)";
+        welcomeText = ''
+          Base mise template created. Run: mise trust && mise install && mise run setup
+        '';
+      };
+
       cpp = {
         path = ./cpp;
         description = "C++ development template using cmake";

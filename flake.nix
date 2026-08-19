@@ -221,7 +221,7 @@
         path = ./pi-extension;
         description = "Pi extension template using mise (no flake)";
         welcomeText = ''
-          pi extension template created. Run: mise install && bun install && just verify
+          pi extension template created. Run: mise install && bun install
         '';
       };
     };

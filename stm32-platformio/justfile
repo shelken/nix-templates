@@ -1,5 +1,0 @@
-upload:
-    platformio run -t upload
-
-cubemx:
-    stm32cubemx

@@ -1,66 +1,42 @@
+# nix-templates
 
-<div align=center>
+个人 Nix flake 模板集，只保留自己在用的模板。
 
-# ❄️ nix-templates 📋
+## 模板
 
-[![forthebadge](https://forthebadge.com/images/badges/check-it-out.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+| 模板 | 说明 |
+| --- | --- |
+| `base` | 基础开发模板（mise，不带 flake）：`AGENTS.md`、`README.md`、`mise.toml`（`mise run setup` 装 prek git hook）和 `.pre-commit-config.yaml`。 |
+| `pi-extension` | pi 扩展项目模板（mise + bun，不带 flake）：`src/`、`tests/`、`justfile`（`just verify`），初始化时预装 `pi-interactive-shell`。 |
 
-Minimal development templates for **Nix**
-
-</div>
-
-#### Who is this for 
-
-- Someone who wants to apply Nix's power for development environments.
-- Who's not very comfortable with Flakes (you still need to have a basic understanding)
-- Need something minimal that *just works*™
-
-#### What templates are offered ?
-
-- Android template using kotlin 📱
-- Angular development template 🅰️
-- Deno runtime development template using deno2nix 🦖
-- Rust development template using fenix 🦀
-- Python development template using poetry2nix 🐍
-- Tauri development template 🦬
-- mdbook template for your documentation 📚
-- Presentation development template using reveal.js 🗒️
-- Tex development template using tectonic 📜
-- Svelte development template with tailwind.css
-- Simple trivial template using flake-utils 🚀
-
-#### So how do I use it ??
-
-There are multiple ways to use the templates defined in here.
-To get started fast just use the following command:
+## 用法
 
 ```bash
-# The name corresponds to the different templates provided:
-# [deno, rust, python, tauri, jupyter-py, mdbook, slides, tex, trivial]
-nix flake init -t github:MordragT/nix-templates#<name>
+# 指定模板
+nix flake init -t github:shelken/nix-templates#base
+nix flake init -t github:shelken/nix-templates#pi-extension
+
+# 不写 #name 时用 default（等于 base）
+nix flake init -t github:shelken/nix-templates
 ```
 
-If you are using these templates more frequently you should probably add them
-to the nix registry to shorten the command above.
-This can be achieved by either adding them via the following command:
-
-```
-nix registry add templates github:MordragT/nix-templates
-```
-
-Or if you are using NixOS by declaratively adding the flake to youre system configuration,
-as shown [here](https://search.nixos.org/options?channel=unstable&show=nix.registry.%3Cname%3E.flake&from=0&size=50&sort=relevance&type=packages&query=nix.registry)
-
-After that you can run the shorter command:
+`base` 初始化后：
 
 ```bash
-nix flake init -t templates#<name>
+mise trust && mise install && mise run setup
 ```
 
-#### FAQ
+`pi-extension` 初始化后：
 
-... Waiting for questions ... (raise an issue in case of doubts)
+```bash
+mise install && bun install
+```
 
-#### Support 
+## 说明
 
-Consider starring the repo ⭐❄️
+- 模板生成的项目本身不依赖 Nix（没有 flake）；仓库根目录的 flake 只提供 `templates` 输出。
+- `mise`、`just`、`prek` 使用系统安装的版本，不写在根 flake 里。
+
+## License
+
+MIT，见 [LICENSE](./LICENSE)。

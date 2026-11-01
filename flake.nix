@@ -1,5 +1,5 @@
 {
-  description = "Personal Nix flake templates: base, pi-extension";
+  description = "Personal Nix flake templates: base, pi-extension, ios";
 
   outputs = _: let
     base = {
@@ -21,6 +21,14 @@
         description = "Pi extension template using mise (no flake)";
         welcomeText = ''
           pi extension template created. Run: mise install && bun install
+        '';
+      };
+
+      ios = {
+        path = ./ios;
+        description = "iOS app template (SwiftUI, xcodegen, real-device workflow) using mise (no flake)";
+        welcomeText = ''
+          ios template created. Run: mise trust && mise install && mise run setup && just init <Name>
         '';
       };
     };

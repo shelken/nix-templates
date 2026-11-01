@@ -1,0 +1,7 @@
+*.xcodeproj
+App/Info.plist
+/build/
+.build/
+.swiftpm/
+.DS_Store
+!.pre-commit-config.yaml

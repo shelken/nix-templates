@@ -33,3 +33,14 @@ description: 构建失败、改 project.yml、真机装不上或启动不了时�
 - `maximum number of installed apps using a free developer profile`：免费账号每台手机最多同时装 3 个 App，报错里列出了占用者。请用户选一个卸载，不要自行卸载。
 - 其他签名错误：同样请用户确认 Apple ID 登录有效。
 - 启动时信任开发者证书、开启开发者模式属于手机上的操作，交给用户。
+
+## 免费账号限制
+
+这两条最容易被误判成代码问题：
+
+- 证书 7 天过期：App 突然打不开或闪退时，先重跑 `just install` 重签，不要去查代码。
+- 每 7 天最多注册 10 个 App ID，每个 extension（Widget、Share 等）单独占一个：频繁改 bundle id 或新建项目会很快用完。遇到 `maximum App ID limit` 类报错，交给用户处理，不要换个 bundle id 重试。
+
+## 不经 Xcode 账号构建
+
+`just ipa` 产出未签名的 `build/<App>.ipa`，不探测 Team ID，CI 也能跑；签名安装交给 Plume / go-ios 等外部工具。

@@ -5,16 +5,17 @@
 ## 编码与提交
 
 - 注释与文档使用中文
-- commit 前先 `git add`，然后运行一次 pre-commit
+- commit 前先 `git add`，然后运行一次 `prek run`
 - 优先使用 Conventional Commits 格式提交，标题英文，正文中文
 
 ## 代码
 
-- Swift 6 语言模式；UI 状态用 `@Observable` 加 `@MainActor`
+- Swift 6 语言模式；App target 默认 MainActor（`project.yml` 已配置），UI 状态用 `@Observable`，Core 包保持 nonisolated
 - 测试用 Swift Testing
 - 与 UI 无关的逻辑放 `Packages/Core`，`App/` 只放 UI 与装配
 - 每个需要点击或断言的元素加 `accessibilityIdentifier`，命名 `<screen>.<element>`，如 `home.title`
 - 测试数据做成 Scenario 加 Fixture，不在代码里硬编码
+- 用户可见文案走 String Catalog（`App/Localizable.xcstrings`），不用 `NSLocalizedString` 或自拼字符串
 
 ## 验证
 

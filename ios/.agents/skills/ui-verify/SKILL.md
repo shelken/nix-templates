@@ -9,7 +9,7 @@ description: 改了 UI 后要在真机上核对界面时使用：启动 Scenario
 
 ## 步骤
 
-1. `just run <scenario>` 以目标 Scenario 启动；不带参数是 `default`。
+1. `just run <scenario>` 以目标 Scenario 启动；不带参数是 `default`。多出的参数会透传为启动参数，如 `just run empty -AppleLanguages '(ja)' -AppleLocale ja_JP`。
 2. 需要跳到具体页面时 `just open <route>`，如 `just open settings`。
 3. `iphone snapshot` 读无障碍树，逐项检查本次改动涉及的 `accessibilityIdentifier` 是否存在且文案正确。
 4. `iphone shot` 截图，对照设计要求逐条核对；每条给出通过或不通过。
@@ -21,3 +21,4 @@ description: 改了 UI 后要在真机上核对界面时使用：启动 Scenario
 
 - Liquid Glass 的折射与透明度以真机为准。
 - 找不到元素时，先确认代码里给它加了 `<screen>.<element>` 形式的 `accessibilityIdentifier`，再怀疑工具。
+- 涉及文案的改动，至少在中文和日文下各核对一次：`just run <scenario> -AppleLanguages '(zh-Hans)' -AppleLocale zh_CN`、`just run <scenario> -AppleLanguages '(ja)' -AppleLocale ja_JP`。同样方式可切动态字体等系统设置。

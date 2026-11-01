@@ -61,20 +61,39 @@ install: build
     set -euo pipefail
     xcrun devicectl device install app --device "$(bash scripts/device)" {{ product }}
 
-# 以指定 Scenario 启动已安装的 App, 启动后立即返回
-launch scenario="default":
+# 以指定 Scenario 启动已安装的 App, 启动后立即返回; 其余参数透传为启动参数, 如 just launch empty -AppleLanguages '(ja)' -AppleLocale ja_JP
+[positional-arguments]
+launch scenario="default" *args:
     #!/usr/bin/env bash
     set -euo pipefail
-    xcrun devicectl device process launch --device "$(bash scripts/device)" --terminate-existing {{ bundle }} -- -scenario {{ scenario }}
+    xcrun devicectl device process launch --device "$(bash scripts/device)" --terminate-existing {{ bundle }} -- -scenario "$1" "${@:2}"
 
-# 构建、安装并以指定 Scenario 启动
-run scenario="default": install (launch scenario)
-
-# 构建、安装并启动, 保持前台回传 App 的 stderr/stdout 日志, Ctrl-C 结束
-console scenario="default": install
+# 构建、安装并以指定 Scenario 启动; 参数同 launch
+[positional-arguments]
+run scenario="default" *args: install
     #!/usr/bin/env bash
     set -euo pipefail
-    xcrun devicectl device process launch --device "$(bash scripts/device)" --terminate-existing --console {{ bundle }} -- -scenario {{ scenario }}
+    just launch "$@"
+
+# 构建、安装并启动, 保持前台回传 App 的 stderr/stdout 日志, Ctrl-C 结束; 参数同 launch
+[positional-arguments]
+console scenario="default" *args: install
+    #!/usr/bin/env bash
+    set -euo pipefail
+    xcrun devicectl device process launch --device "$(bash scripts/device)" --terminate-existing --console {{ bundle }} -- -scenario "$1" "${@:2}"
+
+# 产出未签名 ipa (build/<App>.ipa), 交给 Plume / go-ios 等工具签名安装; 不探测 Team ID, 不依赖 Xcode 账号, CI 可用
+ipa:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    DEVELOPMENT_TEAM= xcodegen generate
+    rm -rf build/{{ app }}.xcarchive build/Payload build/{{ app }}.ipa
+    xcodebuild -project {{ app }}.xcodeproj -scheme {{ app }} -configuration Release \
+      -destination 'generic/platform=iOS' -derivedDataPath {{ dd }} \
+      -archivePath build/{{ app }}.xcarchive archive CODE_SIGNING_ALLOWED=NO | xcbeautify --quiet
+    mkdir -p build/Payload
+    cp -R build/{{ app }}.xcarchive/Products/Applications/{{ app }}.app build/Payload/
+    (cd build && zip -qry {{ app }}.ipa Payload) && rm -rf build/Payload
 
 # 在真机上触发 deep link, 如 just open settings
 open route:

@@ -1,6 +1,6 @@
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v6.0.0
+  # prek 内置实现, 不联网、不建环境
+  - repo: builtin
     hooks:
       - id: end-of-file-fixer
       - id: trailing-whitespace

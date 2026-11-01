@@ -4,4 +4,3 @@ App/Info.plist
 .build/
 .swiftpm/
 .DS_Store
-!.pre-commit-config.yaml

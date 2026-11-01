@@ -26,9 +26,10 @@
 | `just build` | 真机 Debug 构建 |
 | `just errors` | 上次构建的结构化错误 |
 | `just install` | 构建并安装到真机 |
-| `just launch [scenario]` | 以 Scenario 启动已安装的 App，立即返回 |
-| `just run [scenario]` | `install` 加 `launch` |
-| `just console [scenario]` | 同 `run`，前台回传日志，Ctrl-C 结束 |
+| `just launch [scenario] [启动参数...]` | 以 Scenario 启动已安装的 App，立即返回；多出的参数透传，如 `-AppleLanguages '(ja)'` |
+| `just run [scenario] [启动参数...]` | `install` 加 `launch` |
+| `just console [scenario] [启动参数...]` | 同 `run`，前台回传日志，Ctrl-C 结束 |
+| `just ipa` | 产出未签名 `build/<App>.ipa`，不依赖 Xcode 账号 |
 | `just open <route>` | 在真机上触发 deep link |
 | `just devices` | 列出设备 |
 | `just fmt` | 格式化 |
